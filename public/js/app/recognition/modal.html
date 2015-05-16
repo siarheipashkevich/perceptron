@@ -1,0 +1,24 @@
+<div class="modal-header">
+    <h4 class="modal-title">Выбрать существующую модель данных</h4>
+</div>
+<div class="modal-body">
+    <p ng-show="!vm.data.length" class="text-muted small text-center" style="margin: 0">Нет сохранённых моделей</p>
+    <div ng-show="vm.data.length">
+        <div class="table-responsive models">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th>Имя модели</th>
+                    <th>Дата сохранения</th>
+                </tr>
+                <tr ng-repeat="row in vm.data" ng-class="{'selected': row.selected}" ng-click="vm.changeSelection(row)">
+                    <td>[[ row.title ]]</td>
+                    <td>[[ row.created_at ]]</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="btn btn-sm btn-warning" ng-click="vm.cancel()">Закрыть</div>
+    <div ng-disabled="!vm.item" class="btn btn-sm btn-primary" ng-click="vm.select()">Выбрать</div>
+</div>

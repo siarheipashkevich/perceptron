@@ -1,0 +1,30 @@
+<div class="modal-header">
+    <h4 class="modal-title">Таблица соединений с A-элементами</h4>
+</div>
+<div class="modal-body panel-connection">
+    <div class="table-responsive">
+        <table class="table table-bordered table-connection">
+            <thead>
+            <tr>
+                <th>X<sub>i</sub>\A<sub>i</sub></th>
+                <th ng-repeat="col in vm.tableConnection[0] track by $index">
+                    A<sub>[[ $index + 1 ]]</sub>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in vm.tableConnection">
+                <td>
+                    <strong>X<sub>[[ $index + 1 ]][[ vm.selectedImage.image ? '=' + vm.selectedImage.image.matrix[$index] : '' ]]</sub></strong>
+                </td>
+                <td ng-repeat="col in row track by $index" ng-class="{'t1': col == 1, 't2': col == -1}">
+                    [[ col ]]
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="btn btn-sm btn-primary" ng-click="vm.cancel()">Закрыть</div>
+</div>

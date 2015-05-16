@@ -1,0 +1,47 @@
+<div class="modal-header">
+    <div class="clearfix">
+        <div class="pull-left">
+            <h4 class="modal-title">Форма для обработки пропуска</h4>
+        </div>
+        <div class="pull-right">
+            <div class="btn btn-xs btn-success" ng-file-select ng-multiple="false" ng-file-change="vm.selectFile($files)" ng-accept="'image/*'">
+                Выбрать изображение пропуска
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-body panel-connection pass">
+    <div class="row">
+        <div class="col-md-12">
+            <img src="" ng-src="[[vm.originFile.path]]" class="img-thumbnail">
+            <img src="" ng-src="[[vm.grayscaleFile.path]]" class="img-thumbnail">
+            <img src="" ng-src="[[vm.binaryFile.path]]" class="img-thumbnail">
+            <div id="horizontalChart"></div>
+        </div>
+        <div class="col-md-12" ng-show="vm.cutLines" style="margin-bottom: 3px;">
+            <img src="" ng-src="[[vm.cutLines[0].path]]" class="img-thumbnail">
+            <img src="" ng-src="[[vm.cutLines[1].path]]" class="img-thumbnail">
+        </div>
+        <div class="col-md-12" ng-show="vm.cutLines">
+            <div class="verticalChart one"></div>
+            <div class="verticalChart two"></div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="clearfix">
+        <div class="pull-left">
+            <div class="btn btn-sm btn-primary" ng-click="vm.convertColorToGrayscale()">Полутоновый</div>
+            <input placeholder="Порог" type="text" class="form-control input-sm" ng-model="vm.threshold" style="display: inline-block; width: 60px;">
+            <div class="btn btn-sm btn-primary" ng-click="vm.convertGrayscaleToBinary()">Бинаризация</div>
+            <div class="btn btn-sm btn-primary" ng-click="vm.horizontalChart()">График</div>
+            <div class="btn btn-sm btn-primary" ng-click="vm.cutStrings()">Вырезать строки</div>
+            <div class="btn btn-sm btn-primary" ng-click="vm.cutCharacters()">Вырезать символы</div>
+            <div class="btn btn-sm btn-primary" ng-click="vm.recognitionCharacters()">Распознать символы</div>
+
+        </div>
+        <div class="pull-right">
+            <div class="btn btn-sm btn-primary" ng-click="vm.cancel()">Закрыть</div>
+        </div>
+    </div>
+</div>

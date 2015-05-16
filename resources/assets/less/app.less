@@ -1,0 +1,107 @@
+@import "bootstrap/bootstrap";
+
+@btn-font-weight: 300;
+@font-family-sans-serif: "Roboto", Helvetica, Arial, sans-serif;
+
+body, label, .checkbox label {
+	font-weight: 300;
+}
+
+.modal-backdrop {
+  bottom: 0;
+}
+
+.panel-connection {
+  .table-responsive {
+    max-height: 400px;
+    td, th {
+      padding: 3px;
+      text-align: center;
+      &.t1 {
+        background-color: #00d100;
+        color: #fff;
+      }
+      &.t2 {
+        background-color: #d1500b;
+        color: #fff;
+      }
+    }
+  }
+}
+
+.models {
+  tr {
+    cursor: pointer;
+    &.selected {
+      background-color: #C0C0C0;
+      color: #fff;
+      &:hover {
+        background-color: #C0C0C0;
+        color: #fff;
+      }
+    }
+  }
+}
+
+.list-images {
+  overflow: hidden;
+  margin: 0;
+  li {
+    float: left;
+    margin: 2px;
+    cursor: pointer;
+    img {
+      &.selectImage {
+        border-color: #3FCF2F;
+        box-shadow: 0 0 4px #21A832;
+      }
+    }
+  }
+}
+
+.recognitionResponse {
+  margin-bottom: 0;
+  padding: 5px;
+  height: 30px;
+  text-align: center;
+}
+
+.pass {
+  .img-thumbnail {
+    padding: 0;
+    border-radius: 0;
+    float: left;
+    margin-right: 5px;
+  }
+  #horizontalChart {
+    display: inline-block;
+    width: 200px;
+    border: 1px solid #dddddd;
+    height: auto;
+    .chartRow {
+      height: 1px;
+      background-color: #000;
+      &.lineSelection {
+        background-color: rgb(6, 221, 0);
+        width: 100%;
+      }
+    }
+  }
+
+  .verticalChart {
+    display: inline-block;
+    margin-right: 1px;
+    width: 202px;
+    border: 1px solid #dddddd;
+    height: 25px;
+    .chartCol {
+      width: 1px;
+      background-color: #000;
+      display: inline-block;
+      &.colSelection {
+        background-color: rgb(6, 221, 0);
+        height: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+<div class="modal-header">
+    <h4 class="modal-title">Значения Y-ков на каждой итерации</h4>
+</div>
+<div class="modal-body panel-connection">
+    <div class="table-responsive">
+        <table class="table table-bordered table-connection">
+            <thead>
+            <tr>
+                <th>N<sub>эт.</sub>\Y<sub>i</sub></th>
+                <th ng-repeat="valuesY in vm.matrixValuesY[0] track by $index">
+                    Y<sub>[[ $index + 1 ]]</sub>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="valuesY in vm.matrixValuesY">
+                <td>
+                    <strong>[[ $index + 1 ]]</strong>
+                </td>
+                <td ng-repeat="y in valuesY track by $index">
+                    [[ y ]]
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="btn btn-sm btn-primary" ng-click="vm.cancel()">Закрыть</div>
+</div>

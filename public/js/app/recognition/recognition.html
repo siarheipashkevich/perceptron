@@ -1,0 +1,168 @@
+<div class="panel panel-default panel-connection">
+    <div class="panel-heading">
+        <div class="clearfix">
+            <div class="pull-left">
+                Настройки параметров Персептрона
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-4 col-lg-4">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <label for="input" style="margin-top: 5px">Количество входных нейронов: </label>
+                        </div>
+                        <div class="col-md-5">
+                            <input ng-model="vm.input" type="text" class="form-control input-sm" id="input">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <label for="hidden" style="margin-top: 5px">Количество скрытых нейронов: </label>
+                        </div>
+                        <div class="col-md-5">
+                            <input ng-model="vm.hidden" type="text" class="form-control input-sm" id="hidden">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-bottom: 0">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <label for="output" style="margin-top: 5px">Количество выходных нейронов: </label>
+                        </div>
+                        <div class="col-md-5">
+                            <input ng-model="vm.output" type="text" class="form-control input-sm" id="output">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4">
+                <div class="row" style="margin-bottom: 15px">
+                    <div class="col-md-6">
+                        <div ng-click="vm.initialize()" class="btn btn-sm btn-block btn-primary">
+                            Инициализировать сеть
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div ng-click="vm.loadData()" class="btn btn-sm btn-block btn-danger">
+                            Загрузить модель
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 15px">
+                    <div class="col-md-6">
+                        <input ng-model="vm.titleModel" type="text" class="form-control input-sm" placeholder="Название для модели">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="btn btn-sm btn-block btn-default" ng-click="vm.saveData()">
+                            Сохранить модель
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="btn btn-sm btn-block btn-default" ng-click="vm.automaticTraining()">
+                            Обучить всё
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="btn btn-sm btn-block btn-default" ng-click="vm.showMainModal()">
+                            Выбрать пропуск
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4">
+                <div class="row" style="margin-bottom: 15px">
+                    <div class="col-md-6">
+                        <div ng-click="vm.showMatrixCompounds()" class="btn btn-sm btn-block btn-success">
+                            Таблица соединений
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div ng-click="vm.showMatrixWeightsSum()" class="btn btn-sm btn-block btn-success">
+                            Суммы значений весов
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 15px">
+                    <div class="col-md-6">
+                        <div ng-file-select ng-multiple="true" ng-file-change="vm.uploadImageForRecognition($files)" ng-accept="'image/*'" class="btn btn-sm btn-block btn-success">
+                            Файл для распознавания
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div ng-disabled="!vm.imageForRecognition" class="btn btn-sm btn-block btn-info" ng-click="vm.recognition()">
+                            Распознать
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div ng-click="vm.showMatrixValuesY()" class="btn btn-sm btn-block btn-success">
+                            Таблица Y-значений
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <pre class="recognitionResponse">[[ vm.response ]]</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-repeat="row in vm.weights" ng-init="rowIndex = $index" class="row">
+    <div ng-repeat="col in row" ng-init="colIndex = $index" class="col-md-3">
+        <div class="panel panel-default panel-connection">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <label for="class">Образ: </label>
+                                <input ng-model="col.class" type="text" class="form-control input-sm" style="height: 23px; width: 40px; padding: 3px 4px; margin-left: 3px;" id="class">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="pull-right">
+                            <i class="fa" ng-class="col.right ? 'fa-thumbs-o-up' : 'fa-times'" style="margin-right: 7px;"></i>
+                            <div class="btn btn-xs btn-danger" ng-click="vm.train()">Обучить</div>
+                            <div ng-click="vm.showMatrixWeights(rowIndex == 0 ? colIndex : (rowIndex == 1 ? colIndex + 4 : (rowIndex == 2 ? colIndex + 8 : (rowIndex == 3 ? colIndex + 12 : 0 ))))" class="btn btn-xs btn-primary">
+                                <i class="fa fa-table"></i>
+                            </div>
+                            <div ng-file-select ng-multiple="true" ng-file-change="vm.uploadImages($files, rowIndex == 0 ? colIndex : (rowIndex == 1 ? colIndex + 4 : (rowIndex == 2 ? colIndex + 8 : (rowIndex == 3 ? colIndex + 12 : 0 ))))" ng-accept="'image/*'" class="btn btn-xs btn-primary">
+                                <i class="fa fa-download"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <p ng-show="!vm.images[rowIndex == 0 ? colIndex : (rowIndex == 1 ? colIndex + 4 : (rowIndex == 2 ? colIndex + 8 : (rowIndex == 3 ? colIndex + 12 : 0 )))].length" class="text-muted text-center small" style="margin: 0">Список файлов пуст</p>
+                <ul class="list-unstyled list-images">
+                    <li ng-repeat="image in vm.images[rowIndex == 0 ? colIndex : (rowIndex == 1 ? colIndex + 4 : (rowIndex == 2 ? colIndex + 8 : (rowIndex == 3 ? colIndex + 12 : 0 )))] track by $index">
+                        <img ng-src="[[ image.path ]]"
+                             alt="image.path"
+                             class="img-thumbnail loadedImage"
+                             ng-class="{selectImage: image.select}"
+                             ng-click="vm.selectImage(image, col.index)">
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-footer">
+                <div class="form-inline">
+                    <div class="form-group">
+                        <label>Ответ: </label>
+                        <input ng-repeat="out in col.output track by $index" ng-model="out.value" value="[[out.value]]" type="text" class="form-control input-sm" style="height: 25px; width: 19px; margin-right: 3px; padding: 5px 5px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

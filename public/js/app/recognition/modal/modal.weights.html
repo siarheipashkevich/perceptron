@@ -1,0 +1,30 @@
+<div class="modal-header">
+    <h4 class="modal-title">Значения весов для образа: [[ vm.data.class ]]</h4>
+</div>
+<div class="modal-body panel-connection">
+    <div class="table-responsive">
+        <table class="table table-bordered table-connection">
+            <thead>
+            <tr>
+                <th>N<sub>эт.</sub>\W<sub>i</sub></th>
+                <th ng-repeat="head in vm.data.weights[0] track by $index">
+                    W<sub>[[ $index + 1 ]]</sub>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in vm.data.weights">
+                <td>
+                    <strong>[[ $index + 1 ]]</strong>
+                </td>
+                <td ng-repeat="col in row track by $index">
+                    [[ col ]]
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="btn btn-sm btn-primary" ng-click="vm.cancel()">Закрыть</div>
+</div>
